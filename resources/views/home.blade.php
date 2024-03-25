@@ -22,7 +22,8 @@
                                 {{-- route for the comic details where i give the single comic as parameter --}}
                                 <a href="{{ route('comics.show', $comic) }}">
                                     {{-- comic image --}}
-                                    <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
+                                    <img src="{{ $comic['thumb'] ?? Vite::asset('resources/images/Error-404-page-not-found-illustration-Graphics-33990692-1.jpg') }}"
+                                        alt="{{ $comic['title'] }}">
                                     {{-- overlay --}}
                                     <div class="overlay">
                                         <h2 class="text-uppercase">click for more!</h2>
