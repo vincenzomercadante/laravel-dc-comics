@@ -10,11 +10,12 @@ class ComicController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $comics = Comic::paginate(12);
+
+        return view("home", compact("comics"));
     }
 
     /**
@@ -42,11 +43,10 @@ class ComicController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
     public function show(Comic $comic)
     {
-        //
+        return view("comic_details", compact("comic"));
     }
 
     /**

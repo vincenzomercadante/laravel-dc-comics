@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function comics(){
-        $comics = config("db");
+    public function homepage(){
 
-        return view("home", compact("comics"));
+        return view("homepage");
     }
 
     public function tv(){
