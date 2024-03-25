@@ -1,0 +1,355 @@
+@use "./_partials/variables" as *;
+@import "~bootstrap/scss/bootstrap";
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header {
+    section:first-child {
+        background-color: $main-color;
+        padding: 0.2rem 0;
+        color: white;
+        font-weight: 0.4rem;
+
+        .text-top {
+            font-size: 0.5rem;
+        }
+    }
+    .navbar {
+        padding: 0;
+        color: #333;
+        height: 120px;
+
+        .container {
+            height: 100%;
+            ul {
+                height: 100%;
+                display: flex;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+
+                    &.active {
+                        box-shadow: inset 0px -5px 0px 0px $main-color;
+                    }
+                }
+            }
+            .search-bar {
+                color: #333;
+                border-bottom: 2px solid $main-color;
+                width: 150px;
+
+                input {
+                    outline: none;
+                    border: none;
+                    width: 100%;
+                }
+                ::placeholder {
+                    text-align: right;
+                    text-transform: capitalize;
+                    color: #333;
+                    opacity: 1;
+                    font-weight: bold;
+                }
+            }
+            .fa-caret-down {
+                color: $main-color;
+            }
+        }
+    }
+
+    .hero {
+        background-image: url("/resources/images/jumbotron.jpg");
+        height: 400px;
+        background-size: cover;
+    }
+}
+
+.home {
+    background-color: $comics-main-bg;
+    padding-top: 80px;
+
+    h1 {
+        position: absolute;
+        transform: translate(0, -100%);
+        padding: 0.75rem 1.5rem;
+        color: white;
+        background-color: $main-color;
+        font-weight: bold;
+        font-size: 2rem;
+    }
+
+    .img-container {
+        height: 200px;
+        position: relative;
+        cursor: pointer;
+
+        &:hover .overlay {
+            opacity: 1;
+        }
+
+        img {
+            object-fit: cover;
+            object-position: center;
+            width: 100%;
+            height: 200px;
+            display: block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            background-color: rgba($color: #333, $alpha: 0.5);
+            opacity: 0;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+            transition: all 0.2s linear;
+
+            h2 {
+                color: white;
+                font-size: 1.3rem;
+                line-height: 200px;
+                text-align: center;
+            }
+        }
+    }
+
+    h3 {
+        color: white;
+        font-size: 0.9rem;
+    }
+    .btn-custom {
+        padding: 0.5rem 1rem;
+        background-color: $main-color;
+        color: white;
+        cursor: pointer;
+    }
+
+    .badges-area {
+        background-color: $main-color;
+        a {
+            width: calc(100% / 5);
+            color: white;
+        }
+
+        img {
+            max-width: 50px;
+            aspect-ratio: 1;
+            object-fit: contain;
+        }
+    }
+}
+
+.comic-detail {
+    .container-custom {
+        position: relative;
+        width: 1114px;
+    }
+    .thumb-container {
+        background-color: $main-color;
+        height: 100px;
+
+        .thumb {
+            position: absolute;
+            bottom: 25px;
+            border: 1px solid white;
+
+            img {
+                height: 300px;
+                width: 200px;
+                object-fit: cover;
+            }
+
+            .category,
+            .gallery-tab {
+                $badge-color: #00a9d9;
+                position: absolute;
+                padding: 0.2rem;
+                background-color: $badge-color;
+                color: white;
+                font-size: 0.8rem;
+            }
+
+            .category {
+                left: 0;
+                top: 0;
+            }
+
+            .gallery-tab {
+                bottom: 0;
+                right: 0;
+                left: 0;
+                text-align: center;
+            }
+        }
+    }
+
+    .main-details {
+        padding: 50px 0;
+
+        h1 {
+            $title-color: #003f5e;
+
+            color: $title-color;
+            font-size: 1.8rem;
+        }
+
+        .info {
+            width: 70%;
+
+            .col-8,
+            .col-4 {
+                background-color: #55ba59;
+                border-bottom: 1px solid #333;
+            }
+            .col-8 {
+                border-right: 1px solid #333;
+                h5 {
+                    color: #bafd96;
+
+                    span {
+                        color: white;
+                    }
+                }
+            }
+
+            .col-4 {
+                cursor: pointer;
+                h5,
+                i {
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .other-info-wrapper {
+        $bg-color: #f6f6f6;
+        background-color: $bg-color;
+        .other-info {
+            padding: 1rem 0;
+
+            h3,
+            h5 {
+                margin: 0;
+                color: #003f5e;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+            }
+
+            .info,
+            .info-bottom {
+                border-bottom: 1px solid #e3e3e3;
+
+                h5 {
+                    font-size: 0.9rem;
+                    flex-grow: 1;
+                }
+
+                p {
+                    color: #00a9d9;
+                    font-size: 0.8rem;
+                    width: 70%;
+                }
+            }
+
+            .info {
+                border-top: 1px solid #e3e3e3;
+            }
+
+            .specs .info p {
+                color: #00a9d9;
+            }
+
+            .specs .info-bottom p {
+                color: #003f5e;
+            }
+        }
+
+        .badge {
+            margin-top: 100px;
+            border-top: 1px solid #e3e3e3;
+            background-color: rgba($color: #444, $alpha: 0.5);
+            .container-custom {
+                .badge-link {
+                    color: #d8d8d8;
+                    img {
+                        width: 50px;
+                        aspect-ratio: 1;
+                        object-fit: contain;
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    .links-section {
+        background-image: (url("/resources/images/footer-bg.jpg"));
+        background-size: cover;
+        max-height: 500px;
+        overflow: hidden;
+
+        .container {
+            position: relative;
+
+            h3 {
+                color: white;
+                font-size: 1.2rem;
+            }
+
+            a {
+                color: #666;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            p {
+                color: #666;
+
+                span {
+                    color: $main-color;
+                }
+            }
+            img {
+                position: absolute;
+                right: 0;
+            }
+        }
+    }
+
+    .footer-icon {
+        $bg-color: #303030;
+        background-color: $bg-color;
+
+        h4 {
+            margin: 0;
+            color: $main-color;
+        }
+
+        .btn-custom {
+            padding: 0.8rem;
+            border: 2px solid $main-color;
+            color: white;
+            cursor: pointer;
+        }
+    }
+}
