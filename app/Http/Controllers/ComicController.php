@@ -21,11 +21,10 @@ class ComicController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view("comics-create");
     }
 
     /**
@@ -36,7 +35,23 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // save the request in a variable
+        $comics_details = $request->all();
+        
+        // new istance of comic model
+        $comic = new Comic();
+        
+        // iteration for all the comics details & fill the object
+        foreach ($comics_details as $key => $comics_detail) {
+            if($key != '_token'){
+                $comic->$key = $key == 'price' ? $comics_detail . '$' : $comics_detail;
+            }
+        }
+
+        // save the comic in database
+        $comic->save();
+
+        return redirect()->route("comics.show", $comic);
     }
 
     /**

@@ -38,8 +38,11 @@
 
             {{-- load more button --}}
             <div class="row justify-content-center mt-5">
-                <div class="col-2">
+                <div class="col-2 ">
                     {{ $comics->links() }}
+                </div>
+                <div class="col-3 d-flex justify-content-center align-items-center">
+                    <a href="{{ route('comics.create') }}" class="btn-custom text-uppercase">create a new comic!</a>
                 </div>
             </div>
         </div>
