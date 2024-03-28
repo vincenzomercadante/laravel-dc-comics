@@ -71,6 +71,14 @@
         </div>
     </section>
 
+    {{-- alert with session flash variables --}}
+    @if (session('message-text'))
+        <div class="container alert  {{ session('message-style') }} alert-dismissible fade show my-3">
+            {{ session('message-text') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     {{-- jumbotron --}}
     <section class="hero"></section>
 </header>

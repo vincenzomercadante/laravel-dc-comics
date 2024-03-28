@@ -31,7 +31,6 @@ class ComicController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -51,7 +50,7 @@ class ComicController extends Controller
         // save the comic in database
         $comic->save();
 
-        return redirect()->route("comics.show", $comic);
+        return redirect()->route("comics.show", $comic)->with('message-style', 'alert-success')->with('message-text', 'Comic created succesfully');
     }
 
     /**
@@ -79,7 +78,6 @@ class ComicController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Comic $comic)
     {
@@ -94,21 +92,20 @@ class ComicController extends Controller
         $comic->update($comic_info);
 
     
-        return redirect()->route('comics.show', compact('comic'));
+        return redirect()->route('comics.show', compact('comic'))->with('message-style', 'alert-success')->with('message-text', 'Comic modified succesfully');;
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Comic $comic)
     {
         // delete the selected comic from database
         $comic->delete();
 
-        return redirect()->route('comics.index');
+        return redirect()->route('comics.index')->with('message-style', 'alert-danger')->with('message-text', 'Comic deleted correctly');;
 
     }
 }
