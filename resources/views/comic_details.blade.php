@@ -60,6 +60,23 @@
             </div>
         </section>
 
+        {{-- edit & delete button --}}
+        <section class="d-flex justify-content-center align-items-center mb-5">
+            <div class="d-flex justify-content-center align-items-center gap-3">
+                {{-- edit button --}}
+                <a href="{{ route('comics.edit', $comic) }}" class="btn btn-warning text-uppercase">Change the comic
+                    info</a>
+
+                {{-- delete button --}}
+                <form action="{{ route('comics.destroy', $comic) }}" method="POST">
+                    @csrf
+
+                    @method('DELETE')
+
+                    <input type="submit" value="DELETE THE COMIC" class="btn btn-danger text-uppercase">
+                </form>
+            </div>
+        </section>
 
         <div class="other-info-wrapper">
             <section class="other-info d-flex justify-content-center">
@@ -98,6 +115,7 @@
                     </div>
                 </div>
             </section>
+
 
 
             {{-- badge section --}}

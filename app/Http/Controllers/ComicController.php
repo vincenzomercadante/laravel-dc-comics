@@ -44,7 +44,7 @@ class ComicController extends Controller
         // iteration for all the comics details & fill the object
         foreach ($comics_details as $key => $comics_detail) {
             if($key != '_token'){
-                $comic->$key = $key == 'price' ? $comics_detail . '$' : $comics_detail;
+                $comic->$key = $key == 'price' ? '$' . $comics_detail  : $comics_detail;
             }
         }
 
@@ -68,11 +68,10 @@ class ComicController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Comic  $comic
-     * @return \Illuminate\Http\Response
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics-update', compact('comic'));
     }
 
     /**
@@ -84,7 +83,18 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+
+        // request array data
+        $comic_info = $request->all();
+
+        // modify price data in string
+        $comic_info['price'] = '$' . $comic_info['price'];
+
+        // fill the model and save the new data
+        $comic->update($comic_info);
+
+    
+        return redirect()->route('comics.show', compact('comic'));
     }
 
     /**
@@ -95,6 +105,10 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        // delete the selected comic from database
+        $comic->delete();
+
+        return redirect()->route('comics.index');
+
     }
 }
