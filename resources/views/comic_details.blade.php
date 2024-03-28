@@ -67,14 +67,13 @@
                 <a href="{{ route('comics.edit', $comic) }}" class="btn btn-warning text-uppercase">Change the comic
                     info</a>
 
-                {{-- delete button --}}
-                <form action="{{ route('comics.destroy', $comic) }}" method="POST">
-                    @csrf
+                <button type="button" class="btn btn-danger text-uppercase" data-bs-toggle="modal"
+                    data-bs-target="#delete-comic-{{ $comic->id }}">
+                    delete the comic
+                </button>
 
-                    @method('DELETE')
 
-                    <input type="submit" value="DELETE THE COMIC" class="btn btn-danger text-uppercase">
-                </form>
+
             </div>
         </section>
 
@@ -155,4 +154,36 @@
             </section>
         </div>
     </main>
+@endsection
+
+@section('modal')
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete-comic-{{ $comic->id }}" tabindex="-1"
+        aria-labelledby="delete-comic-{{ $comic->id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-uppercase">
+                    Are your sure? <br /> Do you want delete <span class="fw-semibold"> {{ $comic->title }} </span> comic?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{-- delete button --}}
+                    <form action="{{ route('comics.destroy', $comic) }}" method="POST">
+                        @csrf
+
+                        @method('DELETE')
+
+                        <input type="submit" value="Delete the comic" class="btn btn-danger">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection
